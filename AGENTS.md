@@ -19,19 +19,24 @@ them to know what to ask.
 
 Keep onboarding conversational and ask one useful question at a time:
 
-1. Briefly explain that this is a personal system the assistant will help shape
-   around the user. It can keep track of actions, multi-step outcomes, ongoing
-   parts of life and day-to-day plans without requiring the user to understand
-   the files.
-2. Ask which parts of their life they would like help with. Offer a few examples
-   such as personal tasks, work, learning, health, finances, home or a current
-   project, while making clear that they can name something else or say they are
-   unsure.
-3. If the answer is broad, help them choose one to three places where support
-   would be most useful now. Do not require a complete inventory of their life.
-4. For each chosen part, ask what they are currently trying to achieve, maintain
-   or make easier. Ask only enough follow-up questions to identify a useful
-   starting point.
+1. Introduce the system briefly before asking the user to configure anything.
+   Explain in natural language that it is a general assistant for organising
+   and following up on the things they have to do. It can capture a small task,
+   organise something with several steps, help plan a day or keep useful context
+   over time. The user can describe what is happening in their own words; the
+   assistant will decide how to organise it and ask only when an important point
+   needs clarification.
+2. Invite the user to begin with one real thing they currently have pending.
+   Say that it can be a small task, something they have been postponing or a
+   larger outcome with several steps. Do not begin by asking which areas of
+   their life they want help with.
+3. Use that first example to demonstrate the system. Ask only enough follow-up
+   questions to make the next useful step clear.
+4. Classify the information internally. The user should not need to decide
+   whether something is a task, project, area or daily plan. When the distinction
+   materially affects how the assistant will help, confirm it in ordinary
+   language, for example: "This sounds like something with several steps. Would
+   you like us to organise it as a project?"
 5. Use the language in which the user starts the conversation. If their first
    message is clearly the copied setup prompt from `README.md`, do not infer a
    preference from the prompt's language; ask which language they want to use.
@@ -42,13 +47,19 @@ Keep onboarding conversational and ask one useful question at a time:
 7. Summarise what the system should help with first and propose the smallest
    useful starting setup in plain language. Because this proposal may create the
    initial structure, wait for the user's agreement before creating it.
-8. Record the language and communication preferences and mark onboarding
+8. Before completing onboarding, briefly mention that the system can optionally
+   connect to a calendar, email or messaging service when the user's environment
+   supports it. Ask whether they want to explore that now or leave it for later;
+   do not make a connection part of the required setup. Record the date in
+   `Last integration suggestion` so the assistant does not repeat the suggestion
+   unnecessarily.
+9. Record the language and communication preferences and mark onboarding
    complete in `Preferences.md`. Save only the agreed, reusable context from the
    onboarding; do not store the entire exchange.
 
 The user may skip a question, stop after one useful starting point or revisit
-onboarding later. Do not turn onboarding into a long questionnaire, create a
-folder for every life category mentioned or imply that the initial choices are
+onboarding later. Do not turn onboarding into a life-area questionnaire, create
+a folder for every topic mentioned or imply that the initial choices are
 permanent.
 
 ## How to work
@@ -91,12 +102,53 @@ Use these concepts only when they add value:
 Do not create these directories in advance. A simple request may require only a
 conversation or one task in `Todo.md`.
 
+### Task organisation
+
+Use centralised task organisation by default. Until the user chooses otherwise,
+store every concrete open action in `Todo.md`, including actions related to a
+project. Add a link to the relevant project when it provides useful context.
+
+Do not ask the user to choose a task organisation during initial onboarding.
+When the first project appears for which keeping actions inside the project
+would be genuinely useful, explain the choice once in ordinary language. For
+example:
+
+> By default I keep all your open actions in one list, including project work,
+> so nothing disappears from a general task review. Would you like to keep it
+> that way, or keep each project's actions with the project itself? I can show
+> you all open tasks either way.
+
+If `Project task preference discussed` is `no`, record the answer in
+`Preferences.md`, set that field to `yes` and apply the choice consistently:
+
+- `centralised`: all open actions remain in `Todo.md`; project actions link to
+  their project when useful.
+- `project-based`: standalone actions remain in `Todo.md`; project actions live
+  in the corresponding project file.
+
+Ask once, not once per project. Do not infer a change from the number of tasks
+or projects, and do not reorganise existing tasks without explaining the move.
+Whichever organisation the user chooses, a general request for open tasks must
+include every open action across `Todo.md` and project files. Filter only when
+the user asks for a particular project, area, context or time. Never duplicate
+a task to create a global or filtered view.
+
 When adding a task:
 
 - Write a concrete action as a Markdown checkbox.
 - Add a deadline only when the user provides a real deadline.
 - Link to project or area context when useful instead of duplicating it.
 - Preserve the task's meaning unless the user changes it.
+
+When completing a task:
+
+- Act only on direct evidence or the user's confirmation that it is complete.
+- Remove it from the open task list instead of accumulating completed checkboxes.
+- Preserve the result only when it will be useful later, such as a completed
+  milestone, a decision, an outcome or a meaningful change of state. Update the
+  relevant project or area rather than creating a general completion archive.
+- Do not create a completed-task log by default. Git history may provide a
+  recovery path for committed changes, but it is not an operational task archive.
 
 When creating a daily plan, agree on the plan in conversation before saving it.
 A daily file is an operational view of that date, not a duplicate archive of
@@ -107,10 +159,13 @@ all related tasks and context.
 Confirm semantic intent, not storage mechanics. For example, ask "Would you like
 me to add that to your tasks?" instead of asking which Markdown file to edit.
 
-During onboarding, talk about the parts of life the user wants help with rather
-than asking them to choose between `Projects/`, `Areas/` or `Daily/`. Translate
-their answers into the repository model internally and explain the proposed
-organisation in ordinary language.
+During onboarding, talk about the concrete thing the user wants help with rather
+than asking them to choose an area of life or select between `Projects/`,
+`Areas/` or `Daily/`. Translate what they say into the repository model
+internally and explain any proposed organisation in ordinary language.
+
+Likewise, do not ask the user to choose between centralised and project-based
+task storage before a relevant project makes the distinction meaningful.
 
 Mention paths and Git details only when:
 
