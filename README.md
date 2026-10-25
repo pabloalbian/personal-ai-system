@@ -2,10 +2,11 @@
 
 A personal AI assistant with a memory you control.
 
-This repository gives Codex, Claude, ChatGPT or another compatible assistant a
-durable source of truth made from plain Markdown files. You talk to the
-assistant; it reads and updates the files when something is worth remembering.
-Your memory stays visible, portable and under your control.
+This public repository is a reusable template. It gives Codex, Claude, ChatGPT
+or another compatible assistant a durable source of truth made from plain
+Markdown files. You talk to the assistant; it reads and updates your personal
+working copy when something is worth remembering. Your memory stays visible,
+portable and under your control.
 
 ## Quick start prompt
 
@@ -13,30 +14,40 @@ Copy this message into an AI assistant that can help you work with files or
 GitHub:
 
 ```text
-Help me set up my Personal AI System from
+Help me set up my Personal AI System using the public template at
 https://github.com/pabloalbian/personal-ai-system.
-
-First, determine what you can actually access: local files and Git, a connected
-GitHub account, or neither. Do not assume that I already have Git or a GitHub
-account. Briefly explain the most suitable option for my situation and guide me
-one step at a time.
 
 This may be a copied prompt, so do not infer my preferred language from its
 wording. Start by asking which language I want to use, then continue in it.
 
-If you can work locally, clone the public repository into a suitable new folder,
-or reuse an existing copy without overwriting it. If Git is unavailable, help me
-choose between installing it and downloading the repository, but do not install
-software without asking. If you can only work through GitHub, explain the access
-or account step I need instead of pretending you can use my computer.
+First, determine what you can actually access: writable local files and Git, a
+cloud workspace connected to GitHub, GitHub with read or write access, or none
+of these. Do not assume that I already have Git or a GitHub account. Briefly
+explain the most suitable option for my situation and guide me one step at a
+time.
+
+The public repository is the template, not the place for my personal data. The
+goal is to create or reuse my own working copy and keep any remote copy private
+by default. Never write my personal information to the public template.
+
+If I already have a personal copy, reuse it without overwriting existing files.
+If I am working through GitHub or a cloud environment and do not have one, help
+me create a new private repository from the template. If you can perform that
+action, ask for my approval first; otherwise guide me through it one step at a
+time. Then work only inside my private copy.
+
+If I am working locally without a GitHub copy, clone or download the public
+template into a suitable new folder. If Git is unavailable, help me choose
+between installing it and downloading the template, but do not install software
+without asking.
+
+A GitHub account is not required for local use. Explain when an account would
+be useful for a private remote copy, syncing, Codex Cloud or another GitHub-based
+assistant connection.
 
 Do not overwrite existing files, create an account, publish personal content,
 change repository visibility, commit or push unless I explicitly approve the
 relevant action.
-
-If I want a remote repository for my personal information, recommend a private
-repository by default and explain the privacy implications before creating or
-publishing it.
 
 Once the repository is available, work inside it and read `README.md`,
 `AGENTS.md` and `Preferences.md`. Then begin its guided onboarding in the
@@ -47,10 +58,40 @@ the file structure before we begin.
 You may translate or adapt the message. The setup should continue in the
 language you use.
 
-A GitHub account is not required to clone or download a public repository for
-local use. It becomes relevant if you want a remote personal copy, syncing or a
-GitHub-based assistant connection. The setup assistant should explain that
-choice when it applies.
+A GitHub account is not required to clone or download the template for local
+use. It becomes relevant if you want a private remote copy, syncing, Codex Cloud
+or another GitHub-based assistant connection.
+
+## Choose where to use it
+
+- **Local:** clone or download the template and let a compatible assistant work
+  with the files on your computer. A GitHub account is optional.
+- **In a cloud coding environment:** create a private repository from the
+  template, connect that copy to the environment and let the assistant work
+  there. This is the most direct route when you want to use the system entirely
+  from the web.
+- **In a regular chat:** the assistant can guide the setup, but it can maintain
+  the system only if that chat has write access to your personal repository. If
+  it has read-only access or no persistent storage, use a local or cloud coding
+  environment for the actual setup.
+
+## Saving and syncing
+
+When the assistant saves a task, preference or note, it first changes the files
+in the working copy used by the current session. Those changes will not
+automatically appear in another checkout or in a new session that reads the
+remote repository.
+
+After a meaningful group of changes, the assistant will tell you where the work
+is saved and ask whether you also want to synchronise it with your private remote
+copy. If you prefer technical detail, it will call this making a commit and
+pushing it. It should ask at a natural stopping point rather than after every
+small edit, and it will not commit or push unless you approve that specific
+action.
+
+If you do not have a remote repository, local use still works normally. The
+assistant can explain how to create a private remote copy if you want syncing or
+access from other devices.
 
 ## Keep your personal copy private
 
@@ -92,8 +133,10 @@ and not a life-audit questionnaire. The assistant will:
 4. use that example to find a useful next step and decide internally how it
    should be organised;
 5. agree on the language for stored information and how much technical detail
-   you want to see; and
-6. optionally mention calendar, email and messaging integrations, which you can
+   you want to see;
+6. explain the difference between saving changes locally and synchronising them
+   so they are available elsewhere; and
+7. optionally mention calendar, email and messaging integrations, which you can
    configure now or leave for later.
 
 You do not need to choose between tasks, projects or areas before you begin.
